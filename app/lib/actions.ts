@@ -1,14 +1,11 @@
 'use server';
 
-import { signIn } from '@/auth';
-import { AuthError } from 'next-auth';
-
 import { z } from 'zod';
+import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import postgres from 'postgres';
-
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -66,6 +63,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
         // If a database error occurs, return a more specific error.
         return {
             message: 'Database Error: Failed to Create Invoice.',
+            console.error(error);
         };
     }
 
@@ -101,6 +99,7 @@ export async function updateInvoice(id: string, formData: FormData) {
         `;
     } catch (error) {
         return { message: 'Databas Error: Failed to Update Invoice' };
+        console.error(error);
     }
 
     revalidatePath('/dashboard/invoices');
