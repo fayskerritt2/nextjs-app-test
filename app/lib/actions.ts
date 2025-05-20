@@ -85,7 +85,7 @@ export async function updateInvoice(id: string, formData: FormData) {
     //     };
     // }
 
-    const { customerId, amount, status } = validatedFields.data;
+    const { customerId, amount, status } = validatedFields;
     const amountInCents = amount * 100;
 
     try {
