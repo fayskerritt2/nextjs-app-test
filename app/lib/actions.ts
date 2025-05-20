@@ -66,8 +66,6 @@ export async function createInvoice(prevState: State, formData: FormData) {
         };
     }
 
-    console.log(validatedFields);
-
     revalidatePath('/dashboard/invoices');
     redirect('/dashboard/invoices');
 }
@@ -86,7 +84,6 @@ export async function updateInvoice(id: string, formData: FormData) {
     //         message: 'Missing Fields. Failed to Create Invoice.',
     //     };
     // }
-    // REMOVED
 
     const { customerId, amount, status } = validatedFields.data;
     const amountInCents = amount * 100;
