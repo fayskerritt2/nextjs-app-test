@@ -86,6 +86,7 @@ export async function updateInvoice(id: string, formData: FormData) {
     //         message: 'Missing Fields. Failed to Create Invoice.',
     //     };
     // }
+    // REMOVED
 
     const { customerId, amount, status } = validatedFields.data;
     const amountInCents = amount * 100;
