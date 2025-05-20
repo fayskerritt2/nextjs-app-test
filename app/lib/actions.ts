@@ -80,12 +80,12 @@ export async function updateInvoice(id: string, formData: FormData) {
     });
 
     // If form validation fails, return errors early. Otherwise, continue.
-    if (!validatedFields.success) {
-        return {
-            errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Failed to Create Invoice.',
-        };
-    }
+    // if (!validatedFields.success) {
+    //     return {
+    //         errors: validatedFields.error.flatten().fieldErrors,
+    //         message: 'Missing Fields. Failed to Create Invoice.',
+    //     };
+    // }
 
     const { customerId, amount, status } = validatedFields.data;
     const amountInCents = amount * 100;
